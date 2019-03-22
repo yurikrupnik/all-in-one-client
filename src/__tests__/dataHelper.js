@@ -1,11 +1,18 @@
 import {
-    useSelectRedux, useSelect, useChange, useChangeRedux, useToggle
+    useSelectRedux,
+    useSelect,
+    useChange,
+    useChangeRedux,
+    useToggle,
+    useResponse,
+    useResponseRedux
 } from '../dataHelpers';
 
 import api from '../api/movies/api';
 
 const {
-    test
+    test,
+    expect
 } = global;
 
 const changeEvent = {
@@ -23,12 +30,15 @@ const clickEvent = {
 };
 
 test('utils', () => {
-    useChange(jest.fn(), jest.fn(), api.fetch)('oz'); // eslint-disable-line
-    useChange(jest.fn(), jest.fn(), api.fetch)(changeEvent); // eslint-disable-line
-    useSelect(jest.fn(), jest.fn(), api.getSelected)(clickEvent); // eslint-disable-line
-    useSelectRedux(jest.fn(), jest.fn(), api.getSelected)(clickEvent)(jest.fn()); // eslint-disable-line
-    useChangeRedux(jest.fn(), jest.fn(), api.fetch)('as')(jest.fn()); // eslint-disable-line
-    useChangeRedux(jest.fn(), jest.fn(), api.fetch)(changeEvent)(jest.fn()); // eslint-disable-line
+    useChange(api.fetch, jest.fn(), jest.fn())('oz'); // eslint-disable-line
+    useChange(api.fetch, jest.fn(), jest.fn())(changeEvent); // eslint-disable-line
+
+    useSelect(api.getSelected, jest.fn(), jest.fn())(clickEvent); // eslint-disable-line
+    useSelectRedux(api.getSelected, jest.fn())(clickEvent)(jest.fn()); // eslint-disable-line
+    useSelectRedux(api.getSelected, null)(clickEvent)(jest.fn()); // eslint-disable-line
+
+    useChangeRedux(api.fetch, jest.fn(), jest.fn())('as')(jest.fn()); // eslint-disable-line
+    useChangeRedux(api.fetch, jest.fn(), jest.fn())(changeEvent)(jest.fn()); // eslint-disable-line
     class Toggle {
         constructor() {
             this.state = false;
@@ -42,4 +52,20 @@ test('utils', () => {
     const toggle = new Toggle();
 
     useToggle(toggle.toggle.bind(toggle), toggle.state)();
+
+    useResponse(jest.fn(), jest.fn())('as'); // eslint-disable-line
+    useResponse(null, 'as')('as');
+
+
+    const stud = jest.fn(); // eslint-disable-line
+    const stud1 = jest.fn(); // eslint-disable-line
+    const disp = jest.fn(); // eslint-disable-line
+    const response = { name: 'a' };
+
+    useResponseRedux(stud, stud1, null, 's')(disp)(response);
+    expect(disp).toHaveBeenCalledTimes(2);
+    expect(stud).toHaveBeenCalledTimes(1);
+    expect(stud1).toHaveBeenCalledTimes(1);
+    expect(stud).toHaveBeenCalledWith(response);
+    expect(stud1).toHaveBeenCalledWith(response);
 });

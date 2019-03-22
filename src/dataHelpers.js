@@ -1,61 +1,73 @@
+const useResponse = (...rest) => (response) => {
+    rest.forEach((cb) => {
+        if (typeof cb === 'function') {
+            cb(response);
+        }
+    });
+};
 
-const useChange = (setSearch, setData, apiMethod) => (e) => {
+const useResponseRedux = (...rest) => dispatch => (response) => {
+    rest.forEach((cb) => {
+        if (typeof cb === 'function') {
+            dispatch(cb(response));
+        }
+    });
+};
+
+const useToggle = (toggle, value) => () => {
+    toggle(!value);
+};
+
+const useChange = (apiMethod, preApiCb, ...rest) => (e) => {
+    let value;
+    if (typeof e === 'string') { // angular onchange sends the value
+        value = e;
+    } else {
+        value = e.target.value; // eslint-disable-line
+    }
+    preApiCb(value);
+    apiMethod(value)
+        .then(useResponse(...rest));
+};
+
+const useChangeRedux = (apiMethod, preApiCb, ...rest) => e => (dispatch) => {
     let value;
     if (typeof e === 'string') {
         value = e;
     } else {
         value = e.target.value; // eslint-disable-line
-        setSearch(value);
+        dispatch(preApiCb(value));
     }
     apiMethod(value)
-        .then(setData);
+        .then(useResponseRedux(...rest)(dispatch));
 };
 
-const useChangeRedux = (setSearch, setData, apiMethod) => e => (dispatch) => {
-    let value;
-    if (typeof e === 'string') {
-        value = e;
-    } else {
-        value = e.target.value; // eslint-disable-line
-        dispatch(setSearch(value));
+const useSelect = (apiMethod, preApiCb, ...rest) => (e) => {
+    const { dataset } = e.currentTarget;
+    const { id } = dataset;
+    if (typeof preApiCb === 'function') {
+        preApiCb();
     }
-    apiMethod(value)
-        .then((res) => {
-            setData(res)(dispatch);
-        });
+    apiMethod(id)
+        .then(useResponse(...rest));
 };
 
-const useSelect = (setSelected, toggleOpen, apiMethod) => (e) => {
+const useSelectRedux = (apiMethod, preApiCb, ...rest) => e => (dispatch) => {
     const { dataset } = e.currentTarget;
     const { id } = dataset;
+    if (typeof preApiCb === 'function') {
+        preApiCb();
+    }
     apiMethod(id)
-        .then((res) => {
-            setSelected(res);
-            toggleOpen();
-        });
+        .then(useResponseRedux(...rest)(dispatch));
 };
-
-const useSelectRedux = (setSelected, toggleOpen, apiMethod) => e => (dispatch) => {
-    const { dataset } = e.currentTarget;
-    const { id } = dataset;
-    apiMethod(id)
-        .then((res) => {
-            setSelected(res)(dispatch);
-            toggleOpen()(dispatch);
-        });
-};
-
-
-function useToggle(toggle, value) {
-    return function toggleCallback() {
-        toggle(!value);
-    };
-}
 
 export {
     useChange,
     useChangeRedux,
     useSelect,
     useSelectRedux,
-    useToggle
+    useToggle,
+    useResponse,
+    useResponseRedux
 };

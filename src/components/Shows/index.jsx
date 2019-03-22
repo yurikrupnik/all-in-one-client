@@ -21,10 +21,10 @@ class MoviesAsClass extends React.Component {
         this.toggleOpen = this.toggleOpen.bind(this);
 
         this.handleChange = useChange(
-            this.setSearch, this.setData, api.fetch
+            api.fetch, this.setSearch, this.setData
         );
         this.handleSelect = useSelect(
-            this.setSelected, this.toggleOpen, api.getSelected
+            api.getSelected, null, this.setSelected, this.toggleOpen
         );
     }
 
@@ -43,6 +43,11 @@ class MoviesAsClass extends React.Component {
     toggleOpen() {
         this.setState(prevState => ({ open: !prevState.open }));
     }
+
+    // handleSelected(res) {
+    //     this.setSelected(res);
+    //     this.toggleOpen();
+    // }
 
     // handleChange(e) {
     //     const { value } = e.target;
@@ -79,6 +84,14 @@ class MoviesAsClass extends React.Component {
     }
 }
 
+// function useResponse(method1, method2) {
+//     console.log('arguments', arguments);
+//     return function withResponse(response) {
+//         method1(response);
+//         method2(response);
+//     };
+// }
+
 const Shows = () => {
     const [query, setQuery] = useState('');
     const [data, setData] = useState([]);
@@ -90,8 +103,16 @@ const Shows = () => {
     // }
 
     const toggleOpen = useCallback(useToggle(setOpen, open), [open]);
-    const handleChange = useCallback(useChange(setQuery, setData, api.fetch));
-    const handleSelect = useCallback(useSelect(setSelected, toggleOpen, api.getSelected));
+
+    // function handleSelected(res) {
+    //     setSelected(res);
+    //     toggleOpen();
+    // }
+
+    const handleChange = useCallback(useChange(api.fetch, setQuery, setData));
+    const handleSelect = useCallback(
+        useSelect(api.getSelected, null, setSelected, toggleOpen)
+    );
 
     // const handleChange = useCallback(
     //     (e) => {

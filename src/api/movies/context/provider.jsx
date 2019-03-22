@@ -1,7 +1,9 @@
 import React, { useMemo, useCallback, useState } from 'react';
 import PropTypes from 'prop-types';
 import Movies from './context';
-import { useChange, useSelect, useToggle } from '../../../dataHelpers';
+import {
+    useChange, useSelect, useToggle, useResponse
+} from '../../../dataHelpers';
 import api from '../api';
 
 const MoviesProvider = (props) => {
@@ -13,19 +15,19 @@ const MoviesProvider = (props) => {
     const toggleOpen = useCallback(useToggle(setOpen, open), [open]);
 
     const handleChange = useCallback(useChange(setSearch, setData, api.fetch), []);
-    const handleSelect = useCallback(useSelect(setSelected, toggleOpen, api.getSelected));
-    const value = useMemo(() => {
-        return {
-            search,
-            shows,
-            selected,
-            open,
-            toggleOpen,
-            handleChange,
-            handleSelect,
-            setData
-        };
-    },[setData, handleChange, handleSelect, toggleOpen, open, shows, search, selected]);
+    const handleSelect = useCallback(
+        useSelect(api.getSelected, null, setSelected, toggleOpen)
+    );
+    const value = useMemo(() => ({
+        search,
+        shows,
+        selected,
+        open,
+        toggleOpen,
+        handleChange,
+        handleSelect,
+        setData
+    }), [setData, handleChange, handleSelect, toggleOpen, open, shows, search, selected]);
 
     const { children } = props;
 
@@ -36,13 +38,8 @@ const MoviesProvider = (props) => {
     );
 };
 
-MoviesProvider.defaultProps = {
-    initData: []
-};
-
 MoviesProvider.propTypes = {
-    children: PropTypes.element.isRequired,
-    initData: PropTypes.arrayOf(PropTypes.shape({}))
+    children: PropTypes.element.isRequired
 };
 
 class MoviesProviderAsClass extends React.Component {
@@ -56,10 +53,15 @@ class MoviesProviderAsClass extends React.Component {
         };
         this.setSelected = this.setSelected.bind(this);
         this.setData = this.setData.bind(this);
-        this.handleChange = useChange(this.setSearch, this.setData, api.fetch);
         this.setSearch = this.setSearch.bind(this);
-        this.handleSelect = useSelect(this.setSelected, this.toggleOpen, api.getSelected);
         this.toggleOpen = this.toggleOpen.bind(this);
+
+        this.handleChange = useChange(
+            this.setSearch, this.setData, api.fetch
+        );
+        this.handleSelect = useSelect(
+            useResponse(this.setSelected, this.toggleOpen), api.getSelected
+        );
     }
 
     setSelected(val) {
@@ -96,10 +98,6 @@ class MoviesProviderAsClass extends React.Component {
         );
     }
 }
-
-MoviesProviderAsClass.defaultProps = {
-    initData: []
-};
 
 MoviesProviderAsClass.propTypes = {
     children: PropTypes.element.isRequired

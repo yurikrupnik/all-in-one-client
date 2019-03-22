@@ -11,7 +11,8 @@ jest.mock('../../routes'); // eslint-disable-line no-undef
 
 const {
     it,
-    afterEach
+    afterEach,
+    expect
 } = global;
 
 afterEach(cleanup);

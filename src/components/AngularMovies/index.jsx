@@ -41,9 +41,15 @@ app.controller('ctrlWithoutService', ($scope, $mdDialog, selectedShow) => {
         });
     }
 
+    // function handleSelected(res) {
+    //     selectedShow.setSelected(res);
+    //     showAdvanced();
+    // }
     // angular passes the value with ng-change
     $scope.handleChange = useChange(null, setData, api.fetch);
-    $scope.handleSelect = useSelect(selectedShow.setSelected, showAdvanced, api.getSelected);
+    $scope.handleSelect = useSelect(
+        api.getSelected, null, selectedShow.setSelected, showAdvanced
+    );
 
     // $scope.handleChange = function (value) {
     //     api.fetch(value)

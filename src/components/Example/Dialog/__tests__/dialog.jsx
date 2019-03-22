@@ -39,6 +39,34 @@ test(`render ${Component.name} Component`, () => {
             }
         }
     };
-
+    const propsNoSummary = {
+        isOpen: true,
+        handleDialogClose: jest.fn(), // eslint-disable-line
+        showInfo: {
+            name: 'asd',
+            image: {
+                medium: 'http://static.tvmaze.com/uploads/images/medium_portrait/170/426759.jpg',
+                original: 'http://static.tvmaze.com/uploads/images/original_untouched/170/426759.jpg'
+            },
+            officialSite: 'http://www.hbo.com/oz/',
+            _embedded: {
+                cast: [
+                    {
+                        character: {
+                            name: 'sd',
+                            image: {
+                                medium: 'http://static.tvmaze.com/uploads/images/medium_portrait/169/424470.jpg',
+                                original: 'http://static.tvmaze.com/uploads/images/original_untouched/169/424470.jpg'
+                            }
+                        },
+                        person: {
+                            name: 'adf'
+                        },
+                    }
+                ]
+            }
+        }
+    };
     render(<Component {...props} />);
+    render(<Component {...propsNoSummary} />);
 });

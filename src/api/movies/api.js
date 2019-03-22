@@ -43,15 +43,15 @@ const api = {
         };
         return request.get(`${url}`, params)
             .then(res => res.data)
-            .catch(err => {
-                // console.log('err', err);
+            .catch((err) => {
+                console.log('err', err);
             });
     },
     getSelected(id) {
         return request.get(`${infoUrl}/${id}`, { params: { embed: 'cast' } })
             .then(res => res.data)
-            .catch(err => {
-                // console.log('err', err);
+            .catch((err) => {
+                console.log('err', err);
             });
     }
 };

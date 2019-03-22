@@ -37,6 +37,12 @@ class AppState {
         this.search = value;
     }
 
+    // @action.bound
+    // handleSelected(res) {
+    //     this.setSelected(res);
+    //     this.toggleOpen();
+    // }
+
     @action.bound
     handleChange = useChange(this.setSearch, this.setData, api.fetch);
     // handleChange(e) {
@@ -47,7 +53,7 @@ class AppState {
     // }
 
     @action.bound
-    handleSelect = useSelect(this.setSelected, this.toggleOpen, api.getSelected);
+    handleSelect = useSelect(api.getSelected, null, this.setSelected, this.toggleOpen);
     // handleSelect(e) {
     //     const { dataset } = e.currentTarget;
     //     const { id } = dataset;

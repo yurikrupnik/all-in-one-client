@@ -87,10 +87,10 @@ test('reducer', () => {
             }
         );
 
-    toggleModal()(jest.fn);
-    setSearch()(jest.fn);
-    setShows()(jest.fn);
-    setSelected()(jest.fn);
+    toggleModal()(jest.fn); // eslint-disable-line
+    setSearch()(jest.fn); // eslint-disable-line
+    setShows()(jest.fn); // eslint-disable-line
+    setSelected()(jest.fn); // eslint-disable-line
     handleSelect();
     handleChange();
 });

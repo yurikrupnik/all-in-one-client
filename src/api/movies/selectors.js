@@ -1,14 +1,12 @@
-import {bindActionCreators} from 'redux';
+import { bindActionCreators } from 'redux';
 import { selector } from './config';
 import * as actions from './actions';
 
-function mapToProps(state, ownProps) {
+function mapToProps(state) {
     return { [selector]: state[selector] };
 }
 
-const dispatchActions = (dispatch) => {
-    return bindActionCreators(actions, dispatch);
-};
+const dispatchActions = dispatch => bindActionCreators(actions, dispatch);
 
 export {
     mapToProps,

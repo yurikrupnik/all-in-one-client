@@ -1,6 +1,6 @@
 import { selector } from './config';
 // import createLoading from '../../redux/api/Loader/actions';
-import { useChangeRedux, useSelectRedux } from '../../dataHelpers';
+import { useChangeRedux, useSelectRedux, useResponseRedux } from '../../dataHelpers';
 import api from './api';
 // const loading = createLoading(selector);
 
@@ -21,10 +21,12 @@ export const setSearch = payload => dispatch => dispatch({
     type: SET_SEARCH,
     payload
 });
+
 export const setShows = payload => dispatch => dispatch({
     type: FETCH_SHOWS_SUCCESS,
     payload
 });
+
 const toggleModal = () => dispatch => dispatch({ type: TOGGLE_MODAL });
 
 export const setSelected = payload => dispatch => dispatch({
@@ -32,8 +34,17 @@ export const setSelected = payload => dispatch => dispatch({
     payload
 });
 
+// function useCallback(cb1, cb2) {
+//     return function handleSelected(dispatch) {
+//         return function lol(res) {
+//             cb1(res)(dispatch);
+//             cb2(res)(dispatch);
+//         };
+//     };
+// }
+
 const handleChange = useChangeRedux(setSearch, setShows, api.fetch);
-const handleSelect = useSelectRedux(setSelected, toggleModal, api.getSelected);
+const handleSelect = useSelectRedux(api.getSelected, null, setSelected, toggleModal);
 
 // const handleChange = event => (dispatch) => {
 //     const { value } = event.target;

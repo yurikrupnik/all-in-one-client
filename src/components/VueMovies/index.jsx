@@ -49,7 +49,7 @@ const CustomElement = wrap(Vue, {
             this.open = !this.open;
         },
         handleClick(e) {
-            return useSelect(this.setSelected, this.toggleOpen, api.getSelected)(e);
+            return useSelect(api.getSelected, null, this.setSelected, this.toggleOpen)(e);
             // const { dataset } = e.currentTarget;
             // const { id } = dataset;
             // api.getSelected(id)

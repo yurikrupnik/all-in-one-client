@@ -12,12 +12,7 @@
     "test": "jest src/",
     "test:watch": "jest src/ --watch",
     "test:coverage": "jest src/ --coverage",
-    "test:e2e": "jest e2e/",
-    "deploy:test": "npm run lint && npm run test",
-    "deploy:build": "npm run deploy:test && npm run build && docker build -t all-in-one-client . ",
-    "deploy:run": "docker run -p 7000:7000 all-in-one-client",
-    "deploy:compose": "npm run deploy:test && npm run build && docker-compose up",
-    "deploy:up": "docker run -p 7000:7000 all-in-one-client"
+    "test:e2e": "jest e2e/"
   },
   "repository": {
     "type": "git",
@@ -102,12 +97,6 @@
     "webpack-dev-server": "^3.2.1"
   },
   "jest": {
-    "moduleFileExtensions": [
-      "js",
-      "json",
-      "jsx",
-      "vue"
-    ],
     "setupFiles": [
       "./jestsetup.js"
     ],

@@ -10,21 +10,14 @@ const {
 
 describe('currency consumer', () => {
     test('render consumer with render props', () => {
-        const wrapper = mount( // notice render here
-            <Consumer render={(props) => {
-                const { fetch } = props;
-                // fetch();
-                console.log('props', props);
-
-                return (
-                    <div>
-                        asd
-                    </div>
-                );
-            }}
+        const wrapper = mount(
+            <Consumer render={() => (
+                <div>
+                    asd
+                </div>
+            )}
             />
         );
         expect(wrapper).toMatchSnapshot();
-        // expect(1).toBe(1);
     });
 });
