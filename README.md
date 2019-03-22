@@ -11,7 +11,7 @@ Write same javascript functions as data layer api and event handlers for all maj
 
 #### Example
 
-You are working on a screen that has few states you need to save some where either in components's inner state system, in some data managment layer that called state manager like redux or mobX, and in any ui library
+You are working on a screen that has few states you need to save somewhere, either in components's inner state system, in some data managment layer that called state manager like redux or mobX, and in any ui library
 
 ```js
 // React inner state
@@ -50,25 +50,26 @@ $scope.open = false;
 
 ```
 
+In all the Ways you need setters and getters for those states, like hooks provider as the second argument in the array destruction.
+The pattern of using functions to declare same behaviour on every use is seen by react hooks.
+This pattern works with every ui framework as native hooks - they are simply functions that return other functions
 ```js
 const useToggle = (toggle, value) => () => {
     toggle(!value);
 };
 ```
-
-In all the Ways need setters and getters for those states, like hooks provider as the second argument in the array destruction.
-The patters of using functions to declare same behaviour on every use is seen by react hooks.
-This patters works with every ui framework as native hooks - they are simply functions that return other functions
-
-React, Vue and Angular.js examples as routes a provided.
+React, Vue and Angular.js examples as routes are provided.
 
 The app is made from 6 routes...
- - React Example with local component state management, hookway and classway
- - React Example with context api state management, hookway and classway
- - React Example with redux state management
- - React Example with mobX state management
- - React Example with vue.js local component data
- - React Example with angular.js local controller scope
+ - Example with react local component state management, hookway and classway
+ - Example with react context api state management, hookway and classway
+ - Example with react and redux state management
+ - Example with react and mobX state management
+ - Example with vue.js local component data
+ - Example with angular.js local controller scope
 
-#### Notes
-- The pattern 
+#### Bugs
+- Vue and angular.js onChange event works onBlur - new to vue and moved to react from angular 3 years ago.
+- Vue example does not have modal.
+- Angular example contains basic modal with the name and the id of the show.
+- On route change to redux, the screen does now update, refresh solves this. 
