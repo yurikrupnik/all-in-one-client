@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders <Nav /> component 1`] = `
+<header>
+  <div
+    key="shows"
+  >
+    <Link
+      replace={false}
+      to="/"
+    >
+      shows
+    </Link>
+  </div>
+  <div
+    key="mobx"
+  >
+    <Link
+      replace={false}
+      to="/mobx"
+    >
+      mobx
+    </Link>
+  </div>
+</header>
+`;

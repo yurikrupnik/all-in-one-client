@@ -1,0 +1,20 @@
+<div>
+    <md-toolbar>
+        <div>Angular example {{data.length}}</div>
+        <md-input-container>
+            <label>search tv shows</label>
+            <input type="text" ng-model="search" ng-change="handleChange(search)">
+        </md-input-container>
+    </md-toolbar>
+    <div class="flex">
+        <div ng-repeat="item in data" data-id="{{item.show.id}}" ng-click="handleSelect($event)">
+            <div>{{item.show.name}}</div>
+            <div>
+                <img src="{{item.show.image.medium}}" alt="sdas" />
+            </div>
+            <div>
+                score: {{item.score}}
+            </div>
+        </div>
+    </div>
+</div>

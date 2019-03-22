@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`movies provider renders P 1`] = `
+<ContextProvider
+  value={
+    Object {
+      "handleChange": [Function],
+      "handleSelect": [Function],
+      "open": false,
+      "search": "",
+      "selected": Object {},
+      "setData": [Function],
+      "shows": Array [],
+      "toggleOpen": [Function],
+    }
+  }
+>
+  <Component />
+</ContextProvider>
+`;
+
+exports[`movies provider renders movies Provider 1`] = `
+<ContextProvider
+  value={
+    Object {
+      "handleChange": [Function],
+      "handleSelect": [Function],
+      "open": false,
+      "search": "",
+      "selected": Object {},
+      "setData": [Function],
+      "shows": Array [],
+      "toggleOpen": [Function],
+    }
+  }
+>
+  <Component />
+</ContextProvider>
+`;
