@@ -1,92 +1,74 @@
-# Ui is Dumb - Everything Is The Same
+# All is one and one for all
+## Isolated, Framework agnostic, Business logic layer 
 
-## Isolated Business logic layer for all view packages
 ### Run Project
 ```
 npm start
 ```
 
 ### Goal
-Write same javascript functions as data layer api for all major front-end view solutions and state managements.
+Write same javascript functions as data layer api and event handlers for all major front-end view solutions and state managements.
+
+#### Example
+
+You are working on a screen that has few states you need to save some where either in components's inner state system, in some data managment layer that called state manager like redux or mobX, and in any ui library
+
 ```js
-const useChange = (setSearch, setData, apiMethod) => (e) => {
-    let value;
-    if (typeof e === 'string') {
-        value = e;
-    } else {
-        value = e.target.value; // eslint-disable-line
-        setSearch(value);
-    }
-    apiMethod(value)
-        .then(setData);
+// React inner state
+const [query, setQuery] = useState('');
+const [data, setData] = useState([]);
+const [selected, setSelected] = useState({});
+const [open, setOpen] = useState(false);
+
+// or react conter provider data layer
+this.state = {
+    query: '',
+    data: [],
+    selected: {},
+    open: false
 };
 
-const useChangeRedux = (setSearch, setData, apiMethod) => e => (dispatch) => {
-    let value;
-    if (typeof e === 'string') {
-        value = e;
-    } else {
-        value = e.target.value; // eslint-disable-line
-        dispatch(setSearch(value));
-    }
-    apiMethod(value)
-        .then((res) => {
-            setData(res)(dispatch);
-        });
-};
+// or mobx 
+@observable search = '';
+@observable data = [];
+@observable selected = {};
+@observable open = false;
 
-const useSelect = (setSelected, toggleOpen, apiMethod) => (e) => {
-    const { dataset } = e.currentTarget;
-    const { id } = dataset;
-    apiMethod(id)
-        .then((res) => {
-            setSelected(res);
-            toggleOpen();
-        });
-};
+// or redux
+export default combineReducers({
+    data, // redux reducer with default value []
+    query, // ''
+    selected, // {}
+    modal // false
+});
 
-const useSelectRedux = (setSelected, toggleOpen, apiMethod) => e => (dispatch) => {
-    const { dataset } = e.currentTarget;
-    const { id } = dataset;
-    apiMethod(id)
-        .then((res) => {
-            setSelected(res)(dispatch);
-            toggleOpen()(dispatch);
-        });
-};
+// or angular.js 
+$scope.query = '';
+$scope.data = [];
+$scope.search = '';
+$scope.open = false;
 
-
-function useToggle(toggle, value) {
-    return function toggleCallback() {
-        toggle(!value);
-    };
-}
 ```
+
+```js
+const useToggle = (toggle, value) => () => {
+    toggle(!value);
+};
+```
+
+In all the Ways need setters and getters for those states, like hooks provider as the second argument in the array destruction.
+The patters of using functions to declare same behaviour on every use is seen by react hooks.
+This patters works with every ui framework as native hooks - they are simply functions that return other functions
 
 React, Vue and Angular.js examples as routes a provided.
 
 The app is made from 6 routes...
  - React Example with local component state management, hookway and classway
- - React Example with context api state management
+ - React Example with context api state management, hookway and classway
  - React Example with redux state management
  - React Example with mobX state management
  - React Example with vue.js local component data
  - React Example with angular.js local controller scope
 
-### Ground rules
-- Webpack4
-- Babel7
-- Eslint
-- React - context api as state manager
-- React-router 4
-- Server side rendering
-- Sass
-- Express - Express
-- MongoDB - Users and projects demo api's
-- Server side rendering
-- Dynamic imports
-- MongoDB - Api
-- Socket.io - chat example
-- Auth - oAuth - Auth - session storage via mongodb
-- Jest testing - Jest
-- Eslint checking - Docker integration
+#### Notes
+- The pattern 

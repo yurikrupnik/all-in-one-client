@@ -37,8 +37,9 @@ const CustomElement = wrap(Vue, {
             this.data = val;
         },
         handleChange(e) {
-            return useChange(this.setQuery, this.setData, api.fetch)(e);
+            return useChange(api.fetch, this.setQuery, this.setData)(e);
         //     const { value } = e.target;
+        //     this.setQuery(value)
         //     api.fetch(value)
         //         .then(this.setData);
         },

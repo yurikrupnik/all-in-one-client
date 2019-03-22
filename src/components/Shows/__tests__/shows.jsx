@@ -1,6 +1,6 @@
 import React from 'react';
 import { cleanup, render } from 'react-testing-library';
-import Component, { MoviesAsClass } from '../index';
+import Component, { ShowsAsClass } from '../index';
 
 const {
     test,
@@ -17,7 +17,7 @@ test('render movies with hooks', () => {
 
 test('render movies with class', () => {
     const wrapper = shallow((
-        <MoviesAsClass />
+        <ShowsAsClass />
     ));
     const instance = wrapper.instance();
     instance.setSelected({});

@@ -25,7 +25,9 @@ const useChange = (apiMethod, preApiCb, ...rest) => (e) => {
     } else {
         value = e.target.value; // eslint-disable-line
     }
-    preApiCb(value);
+    if (typeof preApiCb === 'function') {
+        preApiCb(value);
+    }
     apiMethod(value)
         .then(useResponse(...rest));
 };
@@ -36,6 +38,8 @@ const useChangeRedux = (apiMethod, preApiCb, ...rest) => e => (dispatch) => {
         value = e;
     } else {
         value = e.target.value; // eslint-disable-line
+    }
+    if (typeof preApiCb === 'function') {
         dispatch(preApiCb(value));
     }
     apiMethod(value)
@@ -68,6 +72,6 @@ export {
     useSelect,
     useSelectRedux,
     useToggle,
-    useResponse,
-    useResponseRedux
+    useResponse, // just for tests
+    useResponseRedux // just for tests
 };

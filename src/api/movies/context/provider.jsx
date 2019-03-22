@@ -2,7 +2,7 @@ import React, { useMemo, useCallback, useState } from 'react';
 import PropTypes from 'prop-types';
 import Movies from './context';
 import {
-    useChange, useSelect, useToggle, useResponse
+    useChange, useSelect, useToggle
 } from '../../../dataHelpers';
 import api from '../api';
 
@@ -14,7 +14,7 @@ const MoviesProvider = (props) => {
 
     const toggleOpen = useCallback(useToggle(setOpen, open), [open]);
 
-    const handleChange = useCallback(useChange(setSearch, setData, api.fetch), []);
+    const handleChange = useCallback(useChange(api.fetch, setSearch, setData), []);
     const handleSelect = useCallback(
         useSelect(api.getSelected, null, setSelected, toggleOpen)
     );
@@ -57,10 +57,10 @@ class MoviesProviderAsClass extends React.Component {
         this.toggleOpen = this.toggleOpen.bind(this);
 
         this.handleChange = useChange(
-            this.setSearch, this.setData, api.fetch
+            api.fetch, this.setSearch, this.setData
         );
         this.handleSelect = useSelect(
-            useResponse(this.setSelected, this.toggleOpen), api.getSelected
+            api.getSelected, null, this.setSelected, this.toggleOpen
         );
     }
 

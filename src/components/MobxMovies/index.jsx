@@ -44,7 +44,7 @@ class AppState {
     // }
 
     @action.bound
-    handleChange = useChange(this.setSearch, this.setData, api.fetch);
+    handleChange = useChange(api.fetch, this.setSearch, this.setData);
     // handleChange(e) {
     //     const { value } = e.target;
     //     this.setSearch(value);

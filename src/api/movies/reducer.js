@@ -1,7 +1,4 @@
 import { combineReducers } from 'redux';
-// import current from '../../redux/ui/current/reducer';
-// import createLoadingWithNamedType from '../../redux/api/Loader/reducer';
-// import {selector} from './config';
 
 import {
     FETCH_SHOWS_SUCCESS,
@@ -14,12 +11,10 @@ const data = (state = [], action) => {
     switch (action.type) {
     case FETCH_SHOWS_SUCCESS:
         return action.payload;
-    // case FETCH_SHOWS_PENDING:
     default:
         return state;
     }
 };
-
 
 const query = (state = '', action) => {
     switch (action.type) {
@@ -29,6 +24,7 @@ const query = (state = '', action) => {
         return state;
     }
 };
+
 const selected = (state = {}, action) => {
     switch (action.type) {
     case SET_SELECTED:
@@ -47,11 +43,7 @@ const modal = (state = false, action) => {
     }
 };
 
-// export default query;
-
 export default combineReducers({
-//     loading: createLoadingWithNamedType(selector),
-//     // current,
     data,
     query,
     selected,

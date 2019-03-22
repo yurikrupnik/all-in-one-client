@@ -46,7 +46,7 @@ app.controller('ctrlWithoutService', ($scope, $mdDialog, selectedShow) => {
     //     showAdvanced();
     // }
     // angular passes the value with ng-change
-    $scope.handleChange = useChange(null, setData, api.fetch);
+    $scope.handleChange = useChange(api.fetch, null, setData);
     $scope.handleSelect = useSelect(
         api.getSelected, null, selectedShow.setSelected, showAdvanced
     );

@@ -1,6 +1,6 @@
 import { selector } from './config';
 // import createLoading from '../../redux/api/Loader/actions';
-import { useChangeRedux, useSelectRedux, useResponseRedux } from '../../dataHelpers';
+import { useChangeRedux, useSelectRedux } from '../../dataHelpers';
 import api from './api';
 // const loading = createLoading(selector);
 
@@ -43,7 +43,7 @@ export const setSelected = payload => dispatch => dispatch({
 //     };
 // }
 
-const handleChange = useChangeRedux(setSearch, setShows, api.fetch);
+const handleChange = useChangeRedux(api.fetch, setSearch, setShows);
 const handleSelect = useSelectRedux(api.getSelected, null, setSelected, toggleModal);
 
 // const handleChange = event => (dispatch) => {

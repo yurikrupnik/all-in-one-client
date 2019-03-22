@@ -5,7 +5,7 @@ import Dialog from '../Example/Dialog';
 import { useChange, useSelect, useToggle } from '../../dataHelpers';
 import api from '../../api/movies/api';
 
-class MoviesAsClass extends React.Component {
+class ShowsAsClass extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -84,23 +84,12 @@ class MoviesAsClass extends React.Component {
     }
 }
 
-// function useResponse(method1, method2) {
-//     console.log('arguments', arguments);
-//     return function withResponse(response) {
-//         method1(response);
-//         method2(response);
-//     };
-// }
 
 const Shows = () => {
     const [query, setQuery] = useState('');
     const [data, setData] = useState([]);
     const [selected, setSelected] = useState({});
     const [open, setOpen] = useState(false);
-
-    // function toggleOpen() {
-    //     setOpen(!open);
-    // }
 
     const toggleOpen = useCallback(useToggle(setOpen, open), [open]);
 
@@ -137,8 +126,6 @@ const Shows = () => {
     //     }, []
     // );
 
-    // console.log('loading', loading);
-
     return (
         <div>
             <Header title="Hooks useState way" value={query} onChange={handleChange} />
@@ -153,5 +140,4 @@ const Shows = () => {
 };
 
 export default Shows;
-export { MoviesAsClass };
-// export default Movies;
+export { ShowsAsClass };
