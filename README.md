@@ -50,7 +50,7 @@ $scope.open = false;
 
 ```
 
-In all the Ways, you gonna need setters and getters for those states, like hooks provider as the second argument in the array destruction.
+In all the Ways, you gonna need object that represent the api methods and Setters and getters for those states, like hooks provides as the second argument in the array destruction.
 The pattern of using functions to declare same behaviour on every use is seen by react hooks.
 This pattern works with every ui framework as native hooks - they are simply functions that return other functions.
 
