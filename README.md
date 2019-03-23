@@ -70,8 +70,8 @@ toggle()
 React, Vue and Angular.js examples as routes are provided.
 
 The app is made from 6 routes...
- - Example with react local component state management, hookway and classway
- - Example with react context api state management, hookway and classway
+ - Example with react local component state management, written in hookway and classway
+ - Example with react context api state management, written in hookway and classway
  - Example with react and redux state management
  - Example with react and mobX state management
  - Example with vue.js local component data
@@ -81,7 +81,7 @@ The app is made from 6 routes...
 - Vue and angular.js onChange event works onBlur - new to vue and moved to react from angular 3 years ago.
 - Vue example does not have modal.
 - Angular example contains basic modal with the name and the id of the show.
-- On route change to redux, the screen does now update, refresh solves this. 
+- On route change to redux, the screen does now update on change event, refresh solves this. 
 
 #### Notes
 - This is React app, it runs react router to handle the urls. Angular.js and Vue are mounted into React.
