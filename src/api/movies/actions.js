@@ -34,15 +34,6 @@ export const setSelected = payload => dispatch => dispatch({
     payload
 });
 
-// function useCallback(cb1, cb2) {
-//     return function handleSelected(dispatch) {
-//         return function lol(res) {
-//             cb1(res)(dispatch);
-//             cb2(res)(dispatch);
-//         };
-//     };
-// }
-
 const handleChange = useChangeRedux(api.fetch, setSearch, setShows);
 const handleSelect = useSelectRedux(api.getSelected, null, setSelected, toggleModal);
 

@@ -1,5 +1,6 @@
 const puppeteer = require('puppeteer');
 const path = require('path');
+const fs = require('fs');
 
 const {
     describe, test, beforeAll, afterAll
@@ -21,7 +22,8 @@ describe('App', () => {
     });
 
     test('links', async () => {
-        await page.goto('http://localhost:8080/redux');
+        await fs.mkdir('e2e/screens', { recursive: true }, () => {});
+        await page.goto('http://localhost:8080/');
         const hrefs = await page.$$eval('a', as => as.map(a => a.href));
         await Promise.all(
             [ // check index 0, why fails
@@ -51,5 +53,77 @@ describe('App', () => {
                 ])
             ]
         );
+    });
+
+    test('Search shows /shows', async () => {
+        await fs.mkdir('e2e/screens/shows', { recursive: true }, () => {});
+        await page.goto('http://localhost:8080/shows', { waitUntil: 'networkidle2' });
+        await page.screenshot({ path: path.resolve(__dirname, 'screens', 'shows/init.png') });
+        await page.type('input[type="text"]', 'oz');
+        await page.screenshot({ path: path.resolve(__dirname, 'screens', 'shows/change.png') });
+        await page.waitFor('[data-id]');
+        await page.screenshot({ path: path.resolve(__dirname, 'screens', 'shows/data.png') });
+        await page.click('[data-id]');
+        await page.waitFor('[aria-label="Close"]');
+        await page.screenshot({ path: path.resolve(__dirname, 'screens', 'shows/modal.png') });
+        await page.click('[aria-label="Close"]');
+        await page.screenshot({ path: path.resolve(__dirname, 'screens', 'shows/end.png') });
+    });
+
+    test('Search shows /context', async () => {
+        await fs.mkdir('e2e/screens/context', { recursive: true }, () => {});
+        await page.goto('http://localhost:8080/context', { waitUntil: 'networkidle2' });
+        await page.screenshot({ path: path.resolve(__dirname, 'screens', 'context/init.png') });
+        await page.type('input[type="text"]', 'oz');
+        await page.screenshot({ path: path.resolve(__dirname, 'screens', 'context/change.png') });
+        await page.waitFor('[data-id]');
+        await page.screenshot({ path: path.resolve(__dirname, 'screens', 'context/data.png') });
+        await page.click('[data-id]');
+        await page.waitFor('[aria-label="Close"]');
+        await page.screenshot({ path: path.resolve(__dirname, 'screens', 'context/modal.png') });
+        await page.click('[aria-label="Close"]');
+        await page.screenshot({ path: path.resolve(__dirname, 'screens', 'context/end.png') });
+    });
+    //
+    test('Search shows /redux', async () => {
+        await fs.mkdir('e2e/screens/redux', { recursive: true }, () => {});
+        await page.goto('http://localhost:8080/redux', { waitUntil: 'networkidle2' });
+        await page.screenshot({ path: path.resolve(__dirname, 'screens', 'redux/init.png') });
+        await page.type('input[type="text"]', 'oz');
+        await page.screenshot({ path: path.resolve(__dirname, 'screens', 'redux/change.png') });
+        await page.waitFor('[data-id]');
+        await page.screenshot({ path: path.resolve(__dirname, 'screens', 'redux/data.png') });
+        await page.click('[data-id]');
+        await page.waitFor('[aria-label="Close"]');
+        await page.screenshot({ path: path.resolve(__dirname, 'screens', 'redux/modal.png') });
+        await page.click('[aria-label="Close"]');
+        await page.screenshot({ path: path.resolve(__dirname, 'screens', 'redux/end.png') });
+    });
+    //
+    test('Search shows /mobx', async () => {
+        await fs.mkdir('e2e/screens/mobx', { recursive: true }, () => {});
+        await page.goto('http://localhost:8080/mobx', { waitUntil: 'networkidle2' });
+        await page.screenshot({ path: path.resolve(__dirname, 'screens', 'mobx/init.png') });
+        await page.type('input[type="text"]', 'oz');
+        await page.screenshot({ path: path.resolve(__dirname, 'screens', 'mobx/change.png') });
+        await page.waitFor('[data-id]');
+        await page.screenshot({ path: path.resolve(__dirname, 'screens', 'mobx/data.png') });
+        await page.click('[data-id]');
+        await page.waitFor('[aria-label="Close"]');
+        await page.screenshot({ path: path.resolve(__dirname, 'screens', 'mobx/modal.png') });
+        await page.click('[aria-label="Close"]');
+        await page.screenshot({ path: path.resolve(__dirname, 'screens', 'mobx/end.png') });
+    });
+
+    test('Search shows /angular', async () => {
+        await fs.mkdir('e2e/screens/angular', { recursive: true }, () => {});
+        await page.goto('http://localhost:8080/angular', { waitUntil: 'networkidle2' });
+        await page.screenshot({ path: path.resolve(__dirname, 'screens', 'angular/init.png') });
+        await page.type('input[type="text"]', 'oz');
+        await page.screenshot({ path: path.resolve(__dirname, 'screens', 'angular/change.png') });
+        await page.waitFor('[data-id]');
+        await page.screenshot({ path: path.resolve(__dirname, 'screens', 'angular/data.png') });
+        await page.click('[data-id]');
+        await page.screenshot({ path: path.resolve(__dirname, 'screens', 'angular/modal.png') });
     });
 });
