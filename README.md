@@ -91,3 +91,5 @@ The app is made from 6 routes...
 - The ui and the api usage inspired by https://github.com/ShavitCohen/redux-middleware-dev-pattern
 - Very easy to test and achieve 100% coverage
 - Maximize Code Reuse
+## License
+Copyright © Yuri Krupnik  |  The MIT License
