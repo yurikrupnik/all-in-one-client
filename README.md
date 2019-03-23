@@ -1,4 +1,4 @@
-# All is one and one for all
+# All for one and one for all
 ## Isolated, Framework agnostic, Business logic layer 
 
 ### Run Project
@@ -11,7 +11,7 @@ Write same javascript functions as data layer api and event handlers for all maj
 
 #### Example
 
-You are working on a screen that has few states you need to save somewhere, either in components's inner state system, in some data managment layer that called state manager like redux or mobX, and in any ui library
+You are working on a screen that has few states you need to save somewhere, either in components's inner state system, in some data managment layer that called state manager like redux or mobX.
 
 ```js
 // React inner state
@@ -50,13 +50,23 @@ $scope.open = false;
 
 ```
 
-In all the Ways you need setters and getters for those states, like hooks provider as the second argument in the array destruction.
+In all the Ways, you gonna need setters and getters for those states, like hooks provider as the second argument in the array destruction.
 The pattern of using functions to declare same behaviour on every use is seen by react hooks.
-This pattern works with every ui framework as native hooks - they are simply functions that return other functions
+This pattern works with every ui framework as native hooks - they are simply functions that return other functions.
+
 ```js
-const useToggle = (toggle, value) => () => {
-    toggle(!value);
+// this function use setter and getter to toggle bool state
+const toggleBool = (setter, getter) => () => {
+    setter(!getter);
 };
+```
+
+```js
+// usage with react state
+const [open, setOpen] = useState(false);
+
+const toggle = toggleBool(setOpen, open)
+toggle()
 ```
 React, Vue and Angular.js examples as routes are provided.
 
@@ -73,3 +83,7 @@ The app is made from 6 routes...
 - Vue example does not have modal.
 - Angular example contains basic modal with the name and the id of the show.
 - On route change to redux, the screen does now update, refresh solves this. 
+
+#### Notes
+- Debounce for the input is not supported
+- The ui and the api usage inspired by https://github.com/ShavitCohen/redux-middleware-dev-pattern
