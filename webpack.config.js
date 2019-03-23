@@ -5,10 +5,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
-const dotenv = require('dotenv');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
-module.exports = env => {
+module.exports = (env) => {
     const isProd = env ? !!env.prod : false;
     const isDebug = env ? !!env.debug : false;
 
