@@ -86,4 +86,5 @@ The app is made from 6 routes...
 
 #### Notes
 - Debounce for the input is not supported
+- The pattern of putting every state in redux or mobx should not be used - it is poc to handle state in many places. If none of the routes use the query state, it should not be global state!.
 - The ui and the api usage inspired by https://github.com/ShavitCohen/redux-middleware-dev-pattern
