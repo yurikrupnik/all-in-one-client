@@ -26,7 +26,7 @@ describe('App', () => {
         await page.goto('http://localhost:8080/');
         const hrefs = await page.$$eval('a', as => as.map(a => a.href));
         await Promise.all(
-            [ // check index 0, why fails
+            [
                 await Promise.all([
                     page.goto(hrefs[0]),
                     page.screenshot({ path: path.resolve(__dirname, 'screens', `${hrefs[0].split('/').pop()}.png`) }),
