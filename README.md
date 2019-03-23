@@ -84,7 +84,7 @@ The app is made from 6 routes...
 - On route change to redux, the screen does now update, refresh solves this. 
 
 #### Notes
-- This is React app, it runs react router to handle the urls. Angular.js and Vue mounted into React.
+- This is React app, it runs react router to handle the urls. Angular.js and Vue are mounted into React.
 - Debounce for the input is not supported
 - The pattern of putting every state in redux or mobx should not be used - it is poc to handle state in many places. If none of the routes use the query state, it should not be global state!.
 - The ui and the api usage inspired by https://github.com/ShavitCohen/redux-middleware-dev-pattern
