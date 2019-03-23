@@ -37,32 +37,11 @@ class AppState {
         this.search = value;
     }
 
-    // @action.bound
-    // handleSelected(res) {
-    //     this.setSelected(res);
-    //     this.toggleOpen();
-    // }
-
     @action.bound
     handleChange = useChange(api.fetch, this.setSearch, this.setData);
-    // handleChange(e) {
-    //     const { value } = e.target;
-    //     this.setSearch(value);
-    //     api.fetch(value)
-    //         .then(this.setData);
-    // }
 
     @action.bound
     handleSelect = useSelect(api.getSelected, null, this.setSelected, this.toggleOpen);
-    // handleSelect(e) {
-    //     const { dataset } = e.currentTarget;
-    //     const { id } = dataset;
-    //     api.getSelected(id)
-    //         .then((res) => {
-    //             this.setSelected(res);
-    //             this.toggleOpen();
-    //         });
-    // }
 }
 
 const TimerView = observer(props => (
