@@ -60,7 +60,6 @@ const toggleBool = (setter, getter) => () => {
     setter(!getter);
 };
 ```
-
 ```js
 // usage with react state
 const [open, setOpen] = useState(false);
