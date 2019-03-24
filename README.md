@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/yurikrupnik/all-in-one-client.svg?branch=master)](https://travis-ci.org/yurikrupnik/all-in-one-client)
+[![Coverage Status](https://coveralls.io/repos/github/yurikrupnik/all-in-one-client/badge.svg?branch=master)](https://coveralls.io/github/yurikrupnik/all-in-one-client?branch=master)
 # All for one and one for all
 ## Isolated, Framework agnostic, Business logic layer 
 
