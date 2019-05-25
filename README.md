@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/yurikrupnik/all-in-one-client.svg?branch=master)](https://travis-ci.org/yurikrupnik/all-in-one-client)
-[![Coverage Status](https://coveralls.io/repos/github/yurikrupnik/all-in-one-client/badge.svg?branch=master)](https://coveralls.io/github/yurikrupnik/all-in-one-client?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/yurikrupnik/all-in-one-client/badge.svg?branch=master)](https://coveralls.io/github/yurikrupnik/all-in-one-client?branch=master) [![Greenkeeper badge](https://badges.greenkeeper.io/yurikrupnik/all-in-one-client.svg)](https://greenkeeper.io/)
 # All for one and one for all
 ## Isolated, Framework agnostic, Business logic layer 
 
