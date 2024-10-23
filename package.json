@@ -47,7 +47,7 @@
     "redux": "^4.0.1",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
-    "vue": "^2.6.10"
+    "vue": "^3.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.3.4",
